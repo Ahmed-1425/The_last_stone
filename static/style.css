@@ -1,0 +1,761 @@
+/* ---------- Reset بسيط ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  direction: rtl;
+}
+
+/* ---------- خلفية عامة ---------- */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top left, #dbeafe, #eff6ff);
+  color: #0f172a;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- كرت التطبيق الأساسي ---------- */
+.app {
+  background: #ffffffee;
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  padding: 24px 28px 28px;
+  max-width: 1100px;
+  width: 95%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---------- العنوان ---------- */
+.app > h1 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin-bottom: 18px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #1d4ed8;
+}
+
+/* ---------- عناصر عامة ---------- */
+.hidden {
+  display: none !important;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ------------------- شاشة الترحيب ------------------- */
+
+.welcome-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #dbeafe, #eff6ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.welcome-card {
+  background: #ffffffee;
+  backdrop-filter: blur(18px);
+  border-radius: 24px;
+  padding: 30px 26px;
+  max-width: 650px;
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+  animation: fadeInUp 0.6s ease;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 14px;
+  border: 4px solid #e0ecff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.welcome-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1e3a8a;
+  margin-bottom: 10px;
+}
+
+.welcome-bio {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #334155;
+  margin-bottom: 22px;
+  text-align: justify;
+  text-align-last: center;
+}
+
+.welcome-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* زر لينكدإن بشكل احترافي */
+.welcome-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 20px;
+  border-radius: 999px;
+  border: 1px solid #2563eb;
+  background: #eff6ff;
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 14px;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+  transition: all 0.18s ease;
+}
+
+.welcome-link::before {
+  content: "in";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.welcome-link:hover {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px);
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 10px 26px;
+  border: none;
+  font-size: 15px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+  transition: 0.2s ease;
+}
+
+.start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+}
+
+.start-btn:active {
+  transform: scale(0.97);
+}
+
+/* للجوال */
+@media (max-width: 480px) {
+  .welcome-card {
+    padding: 22px 18px;
+  }
+
+  .welcome-name {
+    font-size: 20px;
+  }
+
+  .welcome-bio {
+    font-size: 13px;
+  }
+
+  .welcome-actions {
+    flex-direction: column;
+  }
+}
+
+/* ---------- Onboarding ---------- */
+
+.onboarding {
+  margin-top: 4px;
+}
+
+.onboarding-step {
+  display: none;
+  animation: fadeInUp 0.35s ease;
+}
+
+.onboarding-step.active {
+  display: block;
+}
+
+.onboarding-step h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #1e40af;
+}
+
+.onboarding-step p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.onboarding-step ul {
+  list-style: disc;
+  padding-right: 18px;
+  margin-top: 4px;
+}
+
+.onboarding-step li {
+  font-size: 14px;
+  color: #334155;
+  margin-bottom: 4px;
+}
+
+.onboarding-step .hint {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* أزرار الأونبوردنق */
+
+.onboarding-controls {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.onboarding-controls button {
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 7px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.onboarding-controls button.primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+.onboarding-controls button.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.45);
+}
+
+.onboarding-controls button.primary:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: none;
+}
+
+.onboarding-controls button.secondary {
+  background: #e5e7eb;
+  color: #111827;
+  border-color: #d1d5db;
+}
+
+.onboarding-controls button.secondary:hover {
+  background: #e0f2fe;
+  border-color: #60a5fa;
+}
+
+/* ---------- لعبة Nim ---------- */
+
+.game-screen {
+  margin-top: 4px;
+}
+
+/* Toolbar */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.toolbar label {
+  font-size: 13px;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toolbar select {
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  padding: 6px 10px;
+  font-size: 13px;
+  background-color: #f8fafc;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.toolbar select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.35);
+  background-color: #ffffff;
+}
+
+/* زر لعبة جديدة */
+
+#newGame {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+#newGame:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.45);
+}
+
+#newGame:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  opacity: 0.9;
+}
+
+/* حالة اللعبة */
+
+#status {
+  font-size: 13px;
+  color: #1e293b;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* AI thinking */
+
+.ai-thinking {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-size: 12px;
+  color: #0f766e;
+}
+
+.ai-thinking .spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 2px solid #a5f3fc;
+  border-top-color: #0ea5e9;
+  animation: spin 0.8s linear infinite;
+}
+
+/* منطقة الأكوام */
+
+.piles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+}
+
+/* كرت الكومة الواحدة */
+
+.pile-card {
+  background: linear-gradient(180deg, #ffffff, #eff6ff);
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  padding: 14px 12px 12px;
+  width: 150px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.06);
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.pile-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.16);
+  border-color: #bfdbfe;
+}
+
+.pile-card h3 {
+  font-size: 14px;
+  text-align: center;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* تمثيل الأحجار */
+
+.pile-card .stones {
+  text-align: center;
+  font-size: 22px;
+  min-height: 30px;
+}
+
+.pile-card .count {
+  font-size: 12px;
+  text-align: center;
+  color: #64748b;
+}
+
+/* الأزرار داخل الكومة */
+
+.pile-card .btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.pile-card .btn-row button {
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  padding: 4px 10px;
+  font-size: 11px;
+  background-color: #f8fafc;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.12s ease,
+    border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pile-card .btn-row button:hover {
+  background-color: #dbeafe;
+  border-color: #60a5fa;
+  box-shadow: 0 4px 10px rgba(96, 165, 250, 0.55);
+  transform: translateY(-1px);
+}
+
+.pile-card .btn-row button:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: none;
+}
+
+/* ---------- Overlay (Win / Lose) ---------- */
+
+.result-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(15, 23, 42, 0.3),
+    rgba(15, 23, 42, 0.75)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.result-card {
+  position: relative;
+  background: linear-gradient(145deg, #eff6ff, #ffffff);
+  border-radius: 20px;
+  padding: 22px 22px 18px;
+  width: 320px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.4);
+  text-align: center;
+  animation: popIn 0.35s ease-out;
+}
+
+.result-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.result-badge.win {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.result-badge.lose {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.result-card h2 {
+  font-size: 20px;
+  margin-bottom: 6px;
+  color: #111827;
+}
+
+.result-card p {
+  font-size: 13px;
+  color: #4b5563;
+  margin-bottom: 14px;
+}
+
+.result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* أزرار شاشة النتيجة */
+
+.result-actions .primary,
+.result-actions .secondary {
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 7px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.result-actions .primary {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  font-weight: 600;
+}
+
+.result-actions .primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(22, 163, 74, 0.45);
+}
+
+.result-actions .primary:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: none;
+}
+
+.result-actions .secondary {
+  background: #e5e7eb;
+  color: #111827;
+  border-color: #d1d5db;
+}
+
+.result-actions .secondary:hover {
+  background: #e0f2fe;
+  border-color: #60a5fa;
+}
+
+/* Confetti بسيطة */
+
+.confetti {
+  position: absolute;
+  width: 6px;
+  height: 12px;
+  background: #38bdf8;
+  border-radius: 2px;
+  opacity: 0.8;
+  animation: confetti-fall 1.4s linear infinite;
+}
+
+.confetti-1 {
+  right: 20%;
+  animation-delay: 0s;
+  background: #38bdf8;
+}
+
+.confetti-2 {
+  right: 50%;
+  animation-delay: 0.2s;
+  background: #22c55e;
+}
+
+.confetti-3 {
+  right: 80%;
+  animation-delay: 0.4s;
+  background: #f97316;
+}
+
+/* ---------- توقيع تحت اللعبة ---------- */
+
+.footer-credit {
+  margin-top: 16px;
+  font-size: 12px;
+  text-align: center;
+  color: #64748b;
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    top: -10%;
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    top: 110%;
+    transform: translateX(-20px) rotate(340deg);
+  }
+}
+
+/* ---------- Responsive / Laptop & Tablet ---------- */
+
+@media (max-width: 1024px) {
+  body {
+    align-items: flex-start;
+  }
+
+  .app {
+    margin: 16px 0;
+    width: 100%;
+    max-width: 900px;
+  }
+}
+
+/* ---------- Responsive / Mobile ---------- */
+
+@media (max-width: 768px) {
+  body {
+    align-items: flex-start;
+  }
+
+  .app {
+    border-radius: 0;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .app > h1 {
+    font-size: 20px;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbar label {
+    justify-content: space-between;
+  }
+
+  #newGame {
+    width: 100%;
+    text-align: center;
+  }
+
+  .onboarding-step p,
+  .onboarding-step li {
+    font-size: 13px;
+  }
+
+  .onboarding-controls {
+    justify-content: stretch;
+  }
+
+  .onboarding-controls button {
+    flex: 1;
+    text-align: center;
+  }
+
+  .piles {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pile-card {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* ---------- Responsive / Small phones ---------- */
+
+@media (max-width: 480px) {
+  .app {
+    padding: 18px 14px 20px;
+  }
+
+  .app > h1 {
+    font-size: 18px;
+    letter-spacing: 0.03em;
+  }
+
+  .pile-card {
+    max-width: 100%;
+  }
+
+  .pile-card .stones {
+    font-size: 20px;
+  }
+
+  .toolbar label {
+    font-size: 12px;
+  }
+
+  #status {
+    font-size: 12px;
+  }
+}

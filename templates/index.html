@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>آخر حجر – لعبة نم مع الذكاء الاصطناعي</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <!-- شاشة الترحيب (فوق كل شيء) -->
+  <div id="welcomeScreen" class="welcome-screen">
+    <div class="welcome-card">
+      <!-- حط صورتك هنا: خزنها في static/images/ahmed.jpg أو غيّر المسار -->
+      <img class="profile-img" src="/static/images/ahmed.jpg" alt="Ahmed Photo" />
+
+      <h1 class="welcome-name">أحمد بن خالد الرشيد</h1>
+
+      <p class="welcome-bio">
+        أنا طالب علوم حاسب في جامعة شقراء، ومهندس ذكاء اصطناعي، ومطور تطبيقات iOS
+        ومطور متكامل (Full-Stack Developer)، شغوف بابتكار حلول تجمع بين الذكاء
+        الاصطناعي وتطوير البرمجيات لصناعة منتجات حقيقية تخدم الناس.
+        <br /><br />
+        قُدت وشاركت في تطوير مشاريع مؤثرة مثل
+        <strong>صلة</strong> لترجمة أحرف لغة الإشارة،
+        و<strong>EduEye</strong> للتنبؤ بالمتعثرين واكتشاف الموهوبين،
+        و<strong>Velorent</strong> لتأجير السيارات الشخصية،
+        كما عملت على مشروع <strong>يسرا</strong> لتسهيل الوصول للأماكن المهيأة
+        لذوي الإعاقة.
+        <br /><br />
+        حققت مع فريقي المركز الثاني في هاكاثون كواليثون من بين ٦٣ فريقًا من ٣٠ جامعة،
+        كما حصدت المركز الأول ثلاث سنوات متتالية في الملتقى العلمي بالجامعة بمسار
+        الفكرة المتميزة بريادة الأعمال، والمركز الأول في هاكاثون المبادرات الشبابية
+        على مستوى المملكة بمشروع <strong>طوع</strong> لتحويل الساعات التطوعية إلى
+        منافسة جامعية ذكية.
+        <br /><br />
+        أنا خريج المعسكر التأسيسي للذكاء الاصطناعي من Apple، وبرنامج سامسونج للذكاء
+        الاصطناعي، وأحمل شهادة القيادة العالمية من جامعة كوفنتري في بريطانيا بعد
+        اختياري ضمن أفضل ١٦ طالبًا في الجامعة. أؤمن أن التقنية أداة لصناعة أثر حقيقي،
+        وأسعى أن تكون مشاريعي جزءًا من هذا الأثر.
+      </p>
+
+      <div class="welcome-actions">
+        <a
+          class="welcome-link"
+          href="https://www.linkedin.com/in/ahmed-k-alrasheed-446b8829b?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+          target="_blank"
+        >
+          حسابي على LinkedIn
+        </a>
+
+        <button id="startApp" class="start-btn">ابدأ اللعبة</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- كرت اللعبة الأساسي -->
+  <div class="app">
+    <h1>لعبة آخر حجر – نم مع الذكاء الاصطناعي</h1>
+
+    <!-- شاشة الشرح (Onboarding) -->
+    <div id="onboarding" class="onboarding hidden">
+      <div class="onboarding-step active" data-step="0">
+        <h2>وش فكرة اللعبة؟</h2>
+        <p>
+          هذي لعبة تنافسية بسيطة بينك وبين وكيل ذكاء اصطناعي، مبنية على لعبة
+          <strong>نم (Nim)</strong> الكلاسيكية.
+        </p>
+        <p>
+          قدامك عدة أكوام من الأحجار. أنت والذكاء الاصطناعي تتناوبون الأدوار،
+          وكل واحد فيكم يحاول يلعبها صح عشان ياخذ
+          <strong>آخر حجر</strong> في النهاية ويفوز.
+        </p>
+      </div>
+
+      <div class="onboarding-step" data-step="1">
+        <h2>كيف نلعب؟</h2>
+        <ul>
+          <li>اللعبة تبدأ بثلاث أكوام فيها عدد مختلف من الأحجار.</li>
+          <li>في دورك تختار كومة وحدة فقط.</li>
+          <li>من نفس الكومة تشيل حجر واحد أو أكثر – حسب ما يناسبك.</li>
+          <li>ما تقدر تشيل من أكثر من كومة في نفس الحركة.</li>
+          <li>اللاعب اللي ياخذ <strong>آخر حجر في اللوحة هو الفايز.</strong></li>
+        </ul>
+      </div>
+
+      <div class="onboarding-step" data-step="2">
+        <h2>الخوارزميات ومستوى الصعوبة</h2>
+        <p>تقدر تختار كيف يفكر الذكاء الاصطناعي:</p>
+        <ul>
+          <li>
+            <strong>Minimax (مينيمكس)</strong> – يستكشف شجرة اللعبة ويتوقع كل
+            الاحتمالات عشان يختار أفضل حركة ممكنة (مع تقليم Alpha-Beta).
+          </li>
+          <li>
+            <strong>BFS</strong> – بحث عرضي (Breadth-First Search) بعمق محدود،
+            مناسب للمقارنة وشرح فكرة البحث في فضاء الحالات.
+          </li>
+        </ul>
+        <p>
+          وبعدها تختار <strong>مستوى الصعوبة</strong>:
+          سهل، متوسط، أو صعب – كل ما ارتفع المستوى قلّت أخطاء الذكاء الاصطناعي
+          وصارت قراراته أدق.
+        </p>
+        <p class="hint">
+          تقدر تغيّر الخوارزمية أو مستوى الصعوبة من أعلى شاشة اللعبة في أي وقت.
+        </p>
+      </div>
+
+      <div class="onboarding-controls">
+        <button id="onboarding-back" class="secondary" type="button">رجوع</button>
+        <button id="onboarding-next" type="button">التالي</button>
+        <button id="onboarding-start" class="primary" type="button">
+          ابدأ اللعب ضد الذكاء الاصطناعي
+        </button>
+      </div>
+    </div>
+
+    <!-- شاشة اللعبة -->
+    <div id="game-screen" class="game-screen hidden">
+      <div class="toolbar">
+        <label>الخوارزمية:
+          <select id="strategy">
+            <option>Minimax</option>
+            <option>BFS</option>
+          </select>
+        </label>
+
+        <label>مستوى الصعوبة:
+          <select id="difficulty">
+            <option>Easy</option>
+            <option selected>Medium</option>
+            <option>Hard</option>
+          </select>
+        </label>
+
+        <button id="newGame">لعبة جديدة</button>
+      </div>
+
+      <div id="status"></div>
+
+      <div id="ai-thinking" class="ai-thinking hidden">
+        <div class="spinner"></div>
+        <span>الذكاء الاصطناعي قاعد يفكر…</span>
+      </div>
+
+      <div id="piles" class="piles"></div>
+    </div>
+
+    <!-- شاشة النتيجة -->
+    <div id="result-overlay" class="result-overlay hidden">
+      <div class="result-card">
+        <div class="result-badge" id="result-badge">فزت</div>
+        <h2 id="result-title">أخذت آخر حجر!</h2>
+        <p id="result-subtitle">أحسنت، تغلبت على الذكاء الاصطناعي في هالجولة.</p>
+        <div class="result-actions">
+          <button id="play-again" class="primary">ألعب مرة ثانية</button>
+          <button id="close-overlay" class="secondary">إغلاق</button>
+        </div>
+      </div>
+      <div class="confetti confetti-1"></div>
+      <div class="confetti confetti-2"></div>
+      <div class="confetti confetti-3"></div>
+    </div>
+
+    <!-- توقيع -->
+    <div class="footer-credit">
+      تطوير وتنفيذ: <strong>أحمد بن خالد الرشيد</strong>
+    </div>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
